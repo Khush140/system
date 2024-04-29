@@ -1,0 +1,31 @@
+Difference between fork, vfork, exec system calls:
+fork: It creates a new process by duplicating the calling process. Both the parent and child processes start executing from the same point, but they have different memory spaces. The child process gets a copy of the parent's address space.
+vfork: It's similar to fork, but it's more efficient in terms of memory because it doesn't duplicate the parent's address space. Instead, the child process runs in the address space of the parent until it calls exec or exits. vfork is used when the child process intends to execute a new program immediately after forking.
+exec: It's used to execute a new program within a process. It replaces the current process's memory space with a new program. There are different variants of exec, like execl, execv, execle, etc., which allow passing arguments to the new program in different ways.
+What is FAP in file?:
+FAP typically stands for File Access Permissions. In Unix-like operating systems, each file has a set of permissions associated with it, which determine who can read, write, or execute the file. These permissions are represented by three sets of three bits, indicating permissions for the owner, the group, and others respectively.
+IPC: msgget, msgsnd, msgrcv. shared mem: shmget, shmat, shmdt:
+Message Queues (IPC):
+msgget: It gets the message queue identifier. If the specified key already exists, it returns the identifier. Otherwise, it creates a new message queue and returns its identifier.
+msgsnd: It sends a message to the message queue.
+msgrcv: It receives a message from the message queue.
+Shared Memory (IPC):
+shmget: It gets the shared memory identifier. If the specified key already exists, it returns the identifier. Otherwise, it creates a new shared memory segment and returns its identifier.
+shmat: It attaches the shared memory segment identified by shmid to the address space of the calling process.
+shmdt: It detaches the shared memory segment currently attached to the address space of the calling process.
+What are socket system calls?:
+Socket system calls are a set of API functions used for network communication between processes running on different computers. These calls facilitate communication using the TCP/IP protocol suite. Common socket system calls include socket, bind, listen, accept, connect, send, and recv.
+What is an echo server?:
+An echo server is a network application that listens for incoming messages on a certain port. When it receives a message from a client, it echoes back the same message to the client. It's often used for testing network connectivity and troubleshooting.
+What are unnamed and named pipes (PIPE, FIFO)?:
+Unnamed Pipe (PIPE): It's a unidirectional communication channel or pipe, typically used for communication between related processes (parent-child or sibling processes). It exists within the kernel and has no external name. It's created using the pipe system call.
+Named Pipe (FIFO): It's similar to an unnamed pipe but has a name in the filesystem, allowing unrelated processes to communicate. It's created using the mkfifo system call or the mkfifo command in Unix-like systems.
+Explain semaphore and P and V operations of it:
+Semaphore: A semaphore is a synchronization primitive used to control access to shared resources in a multi-process or multi-threaded environment. It typically maintains a count, and processes can perform P (wait) and V (signal) operations on it.
+P operation (wait): If the semaphore value is greater than 0, it decrements the semaphore count by 1 and proceeds. If the value is 0, it blocks the process until the semaphore value becomes greater than 0.
+V operation (signal): It increments the semaphore count by 1 and wakes up one of the processes waiting on the semaphore, if any.
+Difference between lockf and flock:
+lockf: It's a file locking mechanism provided by POSIX. It locks a portion of a file for exclusive access by the calling process. It's advisory locking, meaning it's up to the processes to honor the locks.
+flock: It's another file locking mechanism provided by POSIX. It also locks an entire file or a portion of it for exclusive access. It's advisory locking as well.
+What is mknod?:
+mknod is a Unix system call and a command used to create special files like block or character devices, FIFOs (named pipes), or Unix domain sockets. It's typically used by system administrators or during system initialization to create these special files required for various system operations.
